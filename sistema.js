@@ -30,4 +30,4 @@ function situacao(media){
         return "REPROVADO"
     }
 }
-console.log(situacao(3))
+
