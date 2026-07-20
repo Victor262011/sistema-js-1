@@ -31,3 +31,43 @@ function situacao(media){
     }
 }
 
+function cadastrarAluno(){
+    let nome = prompt("Digite o nome do aluno: ")
+
+    if (!nome){
+        alert("Nome inválido!")
+        return
+    }
+    let alunoExistente = buscarAluno(nome)
+    if(alunoExistente){
+        alert("Aluno já cadastrado!")
+        return
+    }
+    alunos.push({nome: nome, notas: []})
+    alert(`Aluno ${nome} cadastrado com sucesso!`);
+}
+
+function listarAlunos() {
+    if (alunos.length === 0){
+        alert("Nenhum aluno cadastrado.")
+        return
+    }
+    let texto = "--- LISTA DE ALUNOS ---\n";
+  for (let i = 0; i < alunos.length; i++) {
+    texto += `- ${alunos[i].nome}\n`;
+  }
+
+  alert(texto);
+}
+function removerAluno() {
+  let nome = prompt("Digite o nome do aluno que deseja remover:");
+  
+  let aluno = buscarAluno(nome);
+  if (!aluno) {
+    alert("Aluno não encontrado!");
+    return;
+  }
+  let posicao = alunos.indexOf(aluno);
+  alunos.splice(posicao, 1);
+  alert(`Aluno "${aluno.nome}" removido com sucesso!`);
+}
