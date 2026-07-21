@@ -71,3 +71,44 @@ function removerAluno() {
   alunos.splice(posicao, 1);
   alert(`Aluno "${aluno.nome}" removido com sucesso!`);
 }
+function lancarNota(){
+  let nome = prompt("Digite o nome do aluno: ")
+  let aluno = buscarAluno(nome)
+
+  if (!aluno){
+    alert("Aluno não encontrado!")
+    return
+  }
+  let nota = Number(prompt(`Digite a nota para ${aluno.nome} (entre 0 e 10): `))
+
+  if (isNaN(nota) || nota < 0 || nota > 10){
+    alert("Nota inválida! A nota deve ser um número entre 0 e 10. ")
+    return
+  }
+  
+  aluno.notas.push(nota);
+  alert(`Nota ${nota} lançada com sucesso para ${aluno.nome}!`)
+}
+
+function verBoletim(){
+  let nome = prompt("Digite o nome do aluno: ")
+  let aluno = buscarAluno(nome)
+
+  if (!aluno){
+    alert("Aluno não encontrado!")
+    return
+  }
+  let media = calcularMedia(aluno)
+  let status = situacao(media)
+
+  let listaNotas = aluno.notas.length > 0 ? aluno.notas.join(", ") : "Nenhuma nota lançada"
+  let mediaFormatada = media.toFixed(2)
+
+  let mensagem = `      BOLETIM DO ALUNO     \n
+                  Nome: ${aluno.nome}\n
+                  Notas: ${listaNotas}\n
+                  Média: ${mediaFormatada}\n
+                  Situação: ${status}\n`
+  
+  alert(mensagem)
+}
