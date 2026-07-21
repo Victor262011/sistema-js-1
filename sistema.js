@@ -11,6 +11,7 @@ function buscarAluno(nome) {
   return undefined;
 }
 function calcularMedia(aluno){
+  
     if(!aluno.notas || aluno.notas.length === 0){
         return 0;
     }
@@ -156,3 +157,120 @@ function listarAprovados(){
     alert("Ainda não há alunos aprovados.")
   }
 }
+
+function submenuCadastro(){
+  let opcao;
+  do {
+    opcao = Number(prompt(
+      "    MENU CADASTRO    \n" +
+      "1 - Cadastrar aluno\n" +
+      "2 - Listar alunos\n" +
+      "3 - Remover aluno\n" +
+      "0 - Voltar"
+
+    ));
+
+switch (opcao){
+  case 1: cadastrarAluno();
+  break;
+
+  case 2: listarAlunos();
+  break;
+
+  case 3: removerAluno();
+  break;
+
+  case 0:
+    break;
+    default:
+      alert("Opção inválida!")
+    }
+  }while (opcao !== 0);
+}
+
+function submenuNotas(){
+  let opcao;
+  do {
+    opcao = Number(prompt(
+      "      MENU NOTAS    \n" +
+      "1 - Lançar nota\n" +
+      "2 - Ver boletim do aluno\n" +
+      "0 - Voltar"
+    ));
+
+    switch (opcao) {
+      case 1:
+        lancarNota();
+        break;
+      case 2:
+        verBoletim();
+        break;
+      case 0:
+        break; 
+      default:
+        alert("Opção inválida!");
+    
+    }
+  }while (opcao !== 0);
+}
+
+function submenuRelatorios() {
+  let opcao;
+  do {
+    opcao = Number(prompt(
+      "    MENU RELATÓRIOS    \n" +
+      "1 - Total de alunos\n" +
+      "2 - Média geral da turma\n" +
+      "3 - Listar aprovados\n" +
+      "0 - Voltar"
+    ));
+
+    switch (opcao) {
+      case 1:
+        totalDeAlunos();
+        break;
+      case 2:
+        mediaGeralDaTurma();
+        break;
+      case 3:
+        listarAprovados();
+        break;
+      case 0:
+        break; 
+      default:
+        alert("Opção inválida!");
+    }
+  } while (opcao !== 0);
+}
+
+function menuPrincipal() {
+  let opcao;
+  do {
+    opcao = Number(prompt(
+      "=== SISTEMA ESCOLAR ===\n" +
+      "1 - Cadastro\n" +
+      "2 - Notas\n" +
+      "3 - Relatórios\n" +
+      "0 - Sair"
+    ));
+
+    switch (opcao) {
+      case 1:
+        submenuCadastro();
+        break;
+      case 2:
+        submenuNotas();
+        break;
+      case 3:
+        submenuRelatorios();
+        break;
+      case 0:
+        alert("Saindo do sistema... Até mais!");
+        break;
+      default:
+        alert("Opção inválida!");
+    }
+  } while (opcao !== 0);
+}
+
+menuPrincipal();
