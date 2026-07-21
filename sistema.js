@@ -112,3 +112,47 @@ function verBoletim(){
   
   alert(mensagem)
 }
+
+function totalDeAlunos() {
+  alert(`Total de alunos cadastrados: ${alunos.length}`)
+}
+
+function mediaGeralDaTurma(){
+  if (alunos.length === 0){
+    alert("Nenhum aluno cadastrado para calcular a média geral")
+    return
+  }
+  
+  let somaMedias = 0
+  for  (let i = 0; i < alunos.length; i++){
+    somaMedias += calcularMedia(alunos[i])
+  }
+
+  let mediaGeral = somaMedias / alunos.length
+  alert(`Média geral da turma: ${mediaGeral.toFixed(2)}`)
+}
+
+function listarAprovados(){
+  if(alunos.length === 0){
+    alert("Nenhum aluno cadastrado.")
+    return
+  }
+
+  let texto = "   ALUNOS APROVADOS     \n"
+  let encontou = false
+
+  for(let i = 0; i < alunos.length; i++){
+    let media = calcularMedia(alunos[i])
+    let status = situacao(media)
+
+    if (status === "APROVADO"){
+      texto += `-${alunos[i].nome } (Média:${media.toFixed(2)})\n`
+      encontrou = true
+    }
+  }
+  if (encontrou){
+    alert(texto)
+  } else {
+    alert("Ainda não há alunos aprovados.")
+  }
+}
